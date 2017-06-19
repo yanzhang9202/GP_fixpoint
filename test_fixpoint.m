@@ -1,3 +1,6 @@
+%% This is a test script to try matlab functions in fixed point designer toolbox
+%  By Yan Zhang, Duke Univ. 06/17/2017
+
 %% Display format
 originalFormat = get(0, 'format');
 format loose
@@ -105,5 +108,22 @@ end
 % Explicit quantization during computation
 
 % Non-full-Precision Sums
+
+%% Quantization Error
+q = quantizer([8 7]);
+r = realmax(q);
+u = r*(2*rand(50000,1) - 1);        % Uniformly distributed (-1,1)
+xi=linspace(-2*eps(q),2*eps(q),256);
+% Fix (Towards zero)/Floor/Ceil/Nearest/Round/Convergent
+q = quantizer('nearest',[8 7]);
+err = quantize(q, u) - u;
+f_t = errpdf(q,xi);
+mu_t = errmean(q);
+v_t  = errvar(q);
+% Theoretical variance = eps(q)^2 / 12
+% Theoretical mean     = 0
+fidemo.qerrordemoplot(q,f_t,xi,mu_t,v_t,err)
+
+
 
 
