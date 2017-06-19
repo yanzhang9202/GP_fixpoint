@@ -1,5 +1,5 @@
 %% wl and fl are set in the previous problem statement matlab file
-wl = fl + 3;
+% wl = fl + 3;
 % Set fixed point arithmetic rule
 F = fimath('OverflowAction', 'Saturate', 'RoundingMethod', 'Nearest', ...
     'ProductMode', 'SpecifyPrecision', 'ProductFractionLength', fl, ...

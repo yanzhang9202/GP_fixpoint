@@ -1,8 +1,12 @@
 %%
 global Hqp_fixpoint fqp_fixpoint
 
+wl = wl + ceil(log(max(max(abs(Hqp))))/log(2));
+T.WordLength = wl;
 Hqp_fixpoint = fi(Hqp, T, F);
 fqp_fixpoint = fi(fqp, T, F);
+wl = wl - ceil(log(max(max(abs(Hqp))))/log(2));
+T.WordLength = wl;
 ub_fixpoint = fi(ub, T, F);
 lb_fixpoint = fi(lb, T, F);
 [~, S, ~] = svd(double(Hqp));
